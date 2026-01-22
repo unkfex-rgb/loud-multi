@@ -1,10 +1,13 @@
 
+"use client";
+
 export default function Header() {
   return (
-    <header className="header">
-      <div className="logo-area">
-        <img src="/logo.png" alt="LOUD" />
-        <span>LOUD MULTI</span>
+    <header>
+      <div className="logo-title">
+        <img src="/logo-loud.png" alt="Logo Loud" />
+        <h1>LOUD</h1>
+        <span>MULTISTREAM</span>
       </div>
     </header>
   );

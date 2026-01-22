@@ -1,4 +1,3 @@
-
 "use client";
 
 export default function Header() {
@@ -6,8 +5,7 @@ export default function Header() {
     <header>
       <div className="logo-title">
         <img src="/logo-loud.png" alt="Logo Loud" />
-        <h1>LOUD</h1>
-        <span>MULTISTREAM</span>
+        <h1>LOUD MULTI STREAM HUB</h1>
       </div>
     </header>
   );

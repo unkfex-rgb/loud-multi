@@ -48,12 +48,19 @@ export default function Page() {
     document.body.style.cursor = 'ew-resize';
   };
 
+  const handleChatChange = (name) => {
+    setChatStreamer(name);
+    if (mode === 'focus') {
+      setMainStreamer(name);
+    }
+  };
+
   const ChatSelector = () => (
     <div className="chat-selector" style={{ display: 'flex', gap: '5px', marginBottom: '5px' }}>
       {streamers.map((s) => (
         <button 
           key={s.name} 
-          onClick={() => setChatStreamer(s.name)}
+          onClick={() => handleChatChange(s.name)}
           className={`futuristic-btn ${s.name === chatStreamer ? 'active' : ''}`}
           style={{ flex: 1, padding: '6px 4px', fontSize: '0.6rem' }}
         >
@@ -97,17 +104,6 @@ export default function Page() {
             </div>
             
             <div className="chat-area" style={{ width: '320px' }}>
-              <div className="focus-selector" style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {streamers.map((s) => (
-                  <button 
-                    key={s.name} 
-                    onClick={() => setMainStreamer(s.name)}
-                    className={`futuristic-btn ${s.name === mainStreamer ? 'active' : ''}`}
-                  >
-                    FOCO: {s.name.split('_')[1] || s.name}
-                  </button>
-                ))}
-              </div>
               <ChatSelector />
               <Chat streamer={chatStreamer} />
             </div>

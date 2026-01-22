@@ -166,7 +166,7 @@ main {
 /* Player Styling - Remoção de Blackbars */
 .player {
   background: #000;
-  border-radius: 0;
+  border-radius: 15px;
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -179,14 +179,11 @@ main {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100%;
-  height: 100%;
+  width: 115%;
+  height: 115%;
   transform: translate(-50%, -50%);
   border: none;
-  /* Técnica para remover blackbars: forçar o preenchimento */
-  object-fit: cover;
-  min-width: 100%;
-  min-height: 100%;
+  pointer-events: auto;
 }
 
 /* Chat Styling */

@@ -4,13 +4,9 @@
 export default function ModeMenu({ mode, setMode }) {
   return (
     <div className="mode-menu">
-      <button className="menu-btn">☰</button>
-
-      <div className="menu-dropdown">
-        <span onClick={() => setMode("grid")}>Grid</span>
-        <span onClick={() => setMode("focus")}>Foco</span>
-        <span onClick={() => setMode("auto")}>Auto</span>
-      </div>
+      <button onClick={() => setMode('grid')}>Grid</button>
+      <button onClick={() => setMode('focus')}>Focus</button>
+      <button onClick={() => setMode('auto')}>Auto</button>
     </div>
   );
 }

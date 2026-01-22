@@ -1,295 +1,163 @@
 
-/* RESET */
+/* globals.css */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* BASE */
-html,
 body {
-  height: 100%;
-  background: #0b0b0b;
+  font-family: 'Inter', sans-serif;
+  background: url('/background.jpg') center/cover no-repeat;
   color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
-.background {
-  position: fixed;
-  inset: 0;
-  background: url("/background.jpg") center / cover no-repeat;
-  filter: blur(20px) brightness(0.35) saturate(1.2);
-  z-index: -1;
-  transition: all 0.5s ease;
-}
-
-/* HEADER */
-.header {
-  height: 64px;
-  padding: 0 24px;
+/* Header */
+header {
   display: flex;
+  flex-direction: column;
   align-items: center;
-}
-
-.logo-area {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo-area img {
-  height: 40px;
-}
-
-.logo-area span {
-  font-size: 20px;
-  font-weight: bold;
-  color: #1db954;
-}
-
-/* FOOTER */
-.footer {
-  height: 32px;
-  display: flex;
   justify-content: center;
+  padding: 15px 0;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.logo-title {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 5px;
 }
 
-.dev {
-  font-size: 12px;
-  cursor: pointer;
-  transition: color 0.3s;
+.logo-title img {
+  height: 60px;
 }
 
-.dev:hover {
-  color: #e1306c;
+.logo-title h1 {
+  font-size: 2rem;
+  color: #00ff7f;
+  font-weight: bold;
 }
 
-/* PLAYERS TRANSITIONS */
-.player-wrapper iframe,
-.chat-wrapper iframe,
-.grid-players,
-.side-players,
-.main-player,
-.focus-player,
-.auto-players {
-  transition: all 0.4s ease;
+.logo-title span {
+  font-size: 1.2rem;
+  color: #fff;
+  letter-spacing: 1px;
 }
 
-.player-wrapper:hover {
-  box-shadow: 0 0 16px rgba(29, 185, 84, 0.6);
-  transform: scale(1.02);
+/* Main layout */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 20px;
 }
 
-/* BUTTONS */
+/* Grid layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  height: calc(100vh - 150px);
+}
+
+.grid-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Player */
+.player {
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+/* Chat */
+.chat-container {
+  position: relative;
+  width: 300px;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.2);
+}
+
+.chat-resize {
+  position: absolute;
+  left: -5px;
+  top: 0;
+  width: 10px;
+  height: 100%;
+  cursor: ew-resize;
+  z-index: 10;
+}
+
+/* Buttons futuristas */
 button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00ff7f, #00d4ff);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0,255,127,0.5);
 }
 
 button:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,255,127,0.7);
 }
 
-/* MODE MENU */
-.mode-menu {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 50;
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px 0;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(8px);
 }
 
-.menu-btn {
-  background: rgba(0,0,0,0.6);
-  border: none;
-  color: white;
-  font-size: 20px;
-  padding: 8px 12px;
-  border-radius: 10px;
+.dev {
   cursor: pointer;
+  color: #fff;
+  transition: color 0.3s ease;
 }
 
-.menu-dropdown {
-  margin-top: 8px;
-  background: rgba(15,15,15,0.9);
-  border-radius: 12px;
-  display: none;
-  flex-direction: column;
+.dev:hover {
+  color: #ff007f;
 }
 
-.mode-menu:hover .menu-dropdown {
-  display: flex;
-}
-
-.menu-dropdown span {
-  padding: 10px 16px;
-  cursor: pointer;
-}
-
-.menu-dropdown span:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-/* GRID */
-.grid-root {
-  height: calc(100vh - 96px);
-  display: flex;
-}
-
-.grid-players {
-  flex: 1;
-  display: flex;
-  padding: 16px;
-  gap: 16px;
-}
-
-.main-player {
-  flex: 1.6;
-  border-radius: 14px;
-  overflow: hidden;
-}
-
-.side-players {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* PLAYER */
-.player-wrapper {
-  width: 100%;
-  height: 100%;
-  background: #000;
-  border-radius: 14px;
-  overflow: hidden;
-}
-
-.player-wrapper iframe {
-  width: 100%;
-  height: 100%;
-}
-
-/* CHAT */
-.grid-chat,
-.focus-chat,
-.auto-chat {
-  background: #0f0f0f;
-  height: 100%;
-}
-
-.chat-wrapper {
-  height: 100%;
-}
-
-.chat-wrapper iframe {
-  width: 100%;
-  height: 100%;
-}
-
-/* RESIZER */
-.chat-resizer {
-  width: 6px;
-  cursor: ew-resize;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* FOCUS */
-.focus-root {
-  height: calc(100vh - 96px);
-  display: grid;
-  grid-template-columns: 1fr 360px;
-}
-
-.focus-selector {
-  position: fixed;
-  bottom: 48px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-}
-
-.focus-selector button {
-  background: rgba(0,0,0,0.6);
-  border: none;
-  padding: 10px 16px;
-  border-radius: 12px;
-  color: white;
-  cursor: pointer;
-}
-
-.focus-selector .active {
-  background: #1db954;
-}
-
-/* AUTO */
-.auto-root {
-  height: calc(100vh - 96px);
-  display: flex;
-}
-
-.auto-players {
-  flex: 1;
-  display: flex;
-  gap: 16px;
-  padding: 16px;
-}
-
-.chat-selector {
-  display: flex;
-}
-
-.chat-selector button {
-  flex: 1;
-  background: #111;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-}
-
-.chat-selector .active {
-  background: #1db954;
-}
-
-/* MOBILE */
+/* Mobile */
 @media (max-width: 768px) {
-  .mode-menu {
-    display: none;
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
   }
-
-  .grid-root,
-  .focus-root,
-  .auto-root {
+  .grid-side {
     flex-direction: column;
   }
-
-  .grid-chat,
-  .focus-chat,
-  .auto-chat,
-  .chat-resizer {
+  .chat-container {
     display: none;
   }
-
-  .grid-players,
-  .focus-player,
-  .auto-players {
-    flex-direction: column;
+  header {
+    padding: 10px 0;
   }
-
-  .main-player,
-  .side-players {
-    height: 200px;
-    margin-bottom: 16px;
-  }
-
-  .side-players {
-    gap: 12px;
-  }
-
-  .logo-area {
-    justify-content: center;
-    gap: 8px;
+  main {
+    padding: 5px 10px;
   }
 }

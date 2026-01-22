@@ -11,6 +11,7 @@ body {
   color: #fff;
   overflow: hidden;
   height: 100vh;
+  width: 100vw;
   position: relative;
 }
 
@@ -92,27 +93,30 @@ header {
   box-shadow: 0 0 10px rgba(0, 255, 127, 0.3);
 }
 
+/* Ajuste crucial: main deve ocupar todo o espaço restante e não ter padding excessivo */
 main {
   height: calc(100vh - 60px - 25px);
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .layout-wrapper {
   display: flex;
   gap: 15px;
-  height: 100%;
+  flex: 1; /* Ocupa 100% da altura do main */
   width: 100%;
   position: relative;
 }
 
 /* Grid Mode */
 .grid-main-area {
-  flex: 1; /* Ocupa todo o espaço restante à esquerda */
+  flex: 1;
   height: 100%;
 }
 
 .grid-side-area {
-  width: 400px; /* Aumentado de 300px para 400px para os players não ficarem achatados */
+  width: 400px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -137,7 +141,7 @@ main {
 
 .auto-players-area .player {
   flex: 1;
-  max-height: 90%;
+  height: 100%; /* No modo auto, players ocupam altura total */
 }
 
 /* Chat Area */
@@ -160,7 +164,7 @@ main {
   background: transparent;
 }
 
-/* Player Styling - Preenchimento Total */
+/* Player Styling - Preenchimento Total Absoluto */
 .player {
   background: #000;
   border-radius: 15px;
@@ -179,7 +183,6 @@ main {
   width: 100%;
   height: 100%;
   border: none;
-  display: block;
 }
 
 /* Chat Styling */

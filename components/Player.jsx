@@ -1,9 +1,8 @@
 "use client";
 
-export default function Player({ streamer, big, height }) {
-  const h = height || (big ? '600px' : '300px');
+export default function Player({ streamer }) {
   return (
-    <div className="player" style={{ height: h }}>
+    <div className="player">
       <iframe
         src={`https://player.twitch.tv/?channel=${streamer}&parent=loud-multi.vercel.app`}
         height="100%"

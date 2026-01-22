@@ -85,8 +85,8 @@ export default function Page() {
             </div>
             
             <div className="grid-side-area">
-              <Player streamer={streamers[1].name} height="calc(50% - 7.5px)" />
-              <Player streamer={streamers[2].name} height="calc(50% - 7.5px)" />
+              <Player streamer={streamers[1].name} />
+              <Player streamer={streamers[2].name} />
             </div>
             
             <div className="chat-area" style={{ width: `${chatWidth}px` }}>

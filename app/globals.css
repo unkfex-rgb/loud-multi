@@ -154,3 +154,111 @@ body {
     gap: 12px;
   }
 }
+
+/* MODE MENU */
+.mode-menu {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 50;
+}
+
+.menu-btn {
+  background: rgba(0,0,0,0.6);
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.menu-dropdown {
+  margin-top: 8px;
+  background: rgba(15,15,15,0.9);
+  border-radius: 12px;
+  display: none;
+  flex-direction: column;
+}
+
+.mode-menu:hover .menu-dropdown {
+  display: flex;
+}
+
+.menu-dropdown span {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.menu-dropdown span:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* FOCUS */
+.focus-root {
+  height: calc(100vh - 96px);
+  display: grid;
+  grid-template-columns: 1fr 360px;
+}
+
+.focus-selector {
+  position: fixed;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+}
+
+.focus-selector button {
+  background: rgba(0,0,0,0.6);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+}
+
+.focus-selector .active {
+  background: #1db954;
+}
+
+/* AUTO */
+.auto-root {
+  height: calc(100vh - 96px);
+  display: flex;
+}
+
+.auto-players {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+}
+
+.auto-chat {
+  width: 360px;
+}
+
+.chat-selector {
+  display: flex;
+}
+
+.chat-selector button {
+  flex: 1;
+  background: #111;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.chat-selector .active {
+  background: #1db954;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .mode-menu {
+    display: none;
+  }
+}

@@ -93,14 +93,14 @@ main {
   position: relative;
 }
 
-/* Grid Mode: 1 Main (Left), 2 Stacked (Right) */
+/* Grid Mode: 1 Main (Left), 2 Stacked (Center-Right), Chat (Far Right) */
 .grid-main-area {
-  flex: 1;
+  flex: 1; /* Ocupa o máximo de espaço à esquerda */
   height: 100%;
 }
 
 .grid-side-area {
-  width: 300px; /* Largura fixa para os players empilhados */
+  width: 350px; /* Largura fixa para os players empilhados como no print */
   display: flex;
   flex-direction: column;
   gap: 15px;

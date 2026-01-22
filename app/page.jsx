@@ -1,22 +1,88 @@
 
 "use client";
 
-import { useState } from "react";
-import GridLayout from "../components/GridLayout";
-import FocusLayout from "../components/FocusLayout";
-import AutoLayout from "../components/AutoLayout";
-import ModeMenu from "../components/ModeMenu";
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import ModeMenu from '../components/ModeMenu';
+import Player from '../components/Player';
+import Chat from '../components/Chat';
+import { useState, useEffect } from 'react';
 
-export default function Home() {
-  const [mode, setMode] = useState("grid");
+export default function Page() {
+  const [mode, setMode] = useState('grid');
+  const [mainStreamer, setMainStreamer] = useState('loud_coringa');
+  const [chatStreamer, setChatStreamer] = useState('loud_coringa');
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const streamers = [
+    { name: 'loud_coringa', twitch: 'https://www.twitch.tv/loud_coringa' },
+    { name: 'loud_brabox', twitch: 'https://www.twitch.tv/loud_brabox' },
+    { name: 'gabepeixe', twitch: 'https://www.twitch.tv/gabepeixe' },
+  ];
+
+  // Solução para Twitch embed que não carrega no grid inicialmente
+  useEffect(() => {
+    setRefreshKey((prev) => prev + 1);
+  }, [mode]);
 
   return (
     <>
-      <ModeMenu mode={mode} setMode={setMode} />
+      <Header />
+      {window.innerWidth > 768 && (
+        <ModeMenu mode={mode} setMode={setMode} />
+      )}
+      <main>
+        {mode === 'grid' && (
+          <div className="grid-container" key={refreshKey}>
+            <div className="grid-main">
+              <Player streamer={mainStreamer} />
+            </div>
+            <div className="grid-side">
+              <Player streamer={streamers[1].name} height="48%" />
+              <Player streamer={streamers[2].name} height="48%" />
+            </div>
+            <div className="chat-container">
+              <div className="chat-resize" id="chatResize"></div>
+              <Chat streamer={chatStreamer} />
+            </div>
+          </div>
+        )}
 
-      {mode === "grid" && <GridLayout />}
-      {mode === "focus" && <FocusLayout />}
-      {mode === "auto" && <AutoLayout />}
+        {mode === 'focus' && (
+          <div className="focus-container">
+            <Player streamer={mainStreamer} big />
+            <div className="focus-buttons">
+              {streamers.map((s) => (
+                <button key={s.name} onClick={() => setMainStreamer(s.name)}>
+                  {s.name}
+                </button>
+              ))}
+            </div>
+            <div className="chat-container">
+              <Chat streamer={chatStreamer} />
+            </div>
+          </div>
+        )}
+
+        {mode === 'auto' && (
+          <div className="auto-container">
+            {streamers.map((s) => (
+              <Player key={s.name} streamer={s.name} />
+            ))}
+            <div className="chat-container">
+              <div className="chat-buttons">
+                {streamers.map((s) => (
+                  <button key={s.name} onClick={() => setChatStreamer(s.name)}>
+                    {s.name}
+                  </button>
+                ))}
+              </div>
+              <Chat streamer={chatStreamer} />
+            </div>
+          </div>
+        )}
+      </main>
+      <Footer />
     </>
   );
 }

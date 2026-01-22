@@ -257,3 +257,74 @@ footer {
   .player { height: 220px; margin-bottom: 10px; }
   .chat-area { display: none; }
 }
+
+/* Player Actions Menu */
+.player-actions {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 50;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.player:hover .player-actions {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.player-actions button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.player-actions button:hover {
+  background: #00ff7f;
+  color: #000;
+  border-color: #00ff7f;
+  transform: scale(1.1);
+}
+
+.player-actions svg {
+  width: 16px;
+  height: 16px;
+}
+
+.hidden-player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.show-player-btn {
+  background: #00ff7f;
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.show-player-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 127, 0.4);
+}

@@ -7,14 +7,13 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #0a0a0a; /* Fundo neutro escuro */
+  background: #0a0a0a;
   color: #fff;
   overflow: hidden;
   height: 100vh;
   position: relative;
 }
 
-/* Fundo neutro levemente desfocado */
 body::before {
   content: "";
   position: absolute;
@@ -23,7 +22,7 @@ body::before {
   width: 100%;
   height: 100%;
   background: url('/background.jpg') center/cover no-repeat fixed;
-  filter: blur(15px) brightness(0.3); /* Desfoque e escurecimento */
+  filter: blur(15px) brightness(0.3);
   z-index: -1;
 }
 
@@ -95,10 +94,9 @@ header {
 
 main {
   height: calc(100vh - 60px - 25px);
-  padding: 15px;
+  padding: 10px;
 }
 
-/* Layout Wrappers */
 .layout-wrapper {
   display: flex;
   gap: 15px;
@@ -107,14 +105,14 @@ main {
   position: relative;
 }
 
-/* Grid Mode: 1 Main (50%), 2 Stacked (Right), Chat (Far Right) */
+/* Grid Mode */
 .grid-main-area {
-  flex: 0 0 50%; /* Aproximadamente metade da tela */
+  flex: 1; /* Ocupa todo o espaço disponível à esquerda */
   height: 100%;
 }
 
 .grid-side-area {
-  flex: 1;
+  width: 300px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -151,7 +149,6 @@ main {
   gap: 8px;
 }
 
-/* Resize Handle */
 .chat-resizer {
   position: absolute;
   left: -10px;
@@ -163,7 +160,7 @@ main {
   background: transparent;
 }
 
-/* Player Styling - No Blackbars */
+/* Player Styling - Eliminando Blackbars */
 .player {
   background: #000;
   border-radius: 15px;
@@ -176,9 +173,13 @@ main {
 }
 
 .player iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Tenta preencher o espaço para evitar blackbars */
+  transform: translate(-50%, -50%);
+  border: none;
 }
 
 /* Chat Styling */
@@ -192,7 +193,6 @@ main {
   backdrop-filter: blur(8px);
 }
 
-/* Futuristic Buttons */
 .futuristic-btn {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(0, 255, 127, 0.2);
@@ -228,7 +228,6 @@ footer {
   color: #444;
 }
 
-/* Mobile Version */
 @media (max-width: 768px) {
   body { overflow-y: auto; }
   header { justify-content: center; }

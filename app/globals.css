@@ -87,55 +87,60 @@ main {
 /* Layout Wrappers */
 .layout-wrapper {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   height: 100%;
   width: 100%;
   position: relative;
 }
 
-/* Grid Mode Proportions */
+/* Grid Mode */
 .grid-main-area {
-  flex: 0 0 60%; /* 60% Scale */
+  flex: 0 0 65%;
   height: 100%;
 }
 
 .grid-side-area {
-  flex: 0 0 15%; /* Remaining space for side players */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  height: 100%;
 }
 
-/* Focus Mode Proportions */
+/* Focus Mode */
 .focus-main-area {
   flex: 1;
   height: 100%;
 }
 
-/* Auto Mode Proportions */
+/* Auto Mode */
 .auto-players-area {
   flex: 1;
   display: flex;
   gap: 10px;
   height: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .auto-players-area .player {
   flex: 1;
+  max-height: 80%; /* Centraliza verticalmente */
 }
 
 /* Chat Area */
 .chat-area {
   position: relative;
   height: 100%;
-  min-width: 200px;
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* Resize Handle */
 .chat-resizer {
   position: absolute;
-  left: -5px;
+  left: -8px;
   top: 0;
   width: 10px;
   height: 100%;
@@ -148,7 +153,7 @@ main {
   background: rgba(0, 255, 127, 0.2);
 }
 
-/* Player & Chat Styling */
+/* Player Styling */
 .player {
   background: #000;
   border-radius: 12px;
@@ -156,14 +161,19 @@ main {
   width: 100%;
   height: 100%;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
+/* Chat Styling - Futuristic */
 .chat-container {
-  background: #fff;
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 12px;
   overflow: hidden;
   width: 100%;
-  height: 100%;
+  flex: 1;
+  border: 1px solid rgba(0, 255, 127, 0.2);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
 /* Futuristic Buttons */
@@ -171,26 +181,27 @@ main {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(0, 255, 127, 0.3);
   color: #fff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-size: 0.7rem;
 }
 
 .futuristic-btn:hover {
-  background: rgba(0, 255, 127, 0.2);
+  background: rgba(0, 255, 127, 0.15);
   border-color: #00ff7f;
-  box-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
-  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 255, 127, 0.2);
 }
 
 .futuristic-btn.active {
   background: #00ff7f;
   color: #000;
   border-color: #00ff7f;
+  box-shadow: 0 0 15px rgba(0, 255, 127, 0.4);
 }
 
 footer {

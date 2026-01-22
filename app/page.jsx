@@ -48,6 +48,21 @@ export default function Page() {
     document.body.style.cursor = 'ew-resize';
   };
 
+  const ChatSelector = () => (
+    <div className="chat-selector" style={{ display: 'flex', gap: '5px', marginBottom: '5px' }}>
+      {streamers.map((s) => (
+        <button 
+          key={s.name} 
+          onClick={() => setChatStreamer(s.name)}
+          className={`futuristic-btn ${s.name === chatStreamer ? 'active' : ''}`}
+          style={{ flex: 1, padding: '6px 4px', fontSize: '0.6rem' }}
+        >
+          {s.name.split('_')[1] || s.name}
+        </button>
+      ))}
+    </div>
+  );
+
   return (
     <>
       <Header />
@@ -58,20 +73,18 @@ export default function Page() {
       <main>
         {mode === 'grid' && (
           <div className="layout-wrapper">
-            {/* Main Player: 60% Scale */}
             <div className="grid-main-area">
               <Player streamer={mainStreamer} />
             </div>
             
-            {/* Side Players: 30% each (stacked) */}
-            <div className="grid-side-area" style={{ flex: '1' }}>
-              <Player streamer={streamers[1].name} height="calc(50% - 5px)" />
-              <Player streamer={streamers[2].name} height="calc(50% - 5px)" />
+            <div className="grid-side-area">
+              <Player streamer={streamers[1].name} height="calc(50% - 7.5px)" />
+              <Player streamer={streamers[2].name} height="calc(50% - 7.5px)" />
             </div>
             
-            {/* Chat Area */}
             <div className="chat-area" style={{ width: `${chatWidth}px` }}>
               <div className="chat-resizer" onMouseDown={startResizing}></div>
+              <ChatSelector />
               <Chat streamer={chatStreamer} />
             </div>
           </div>
@@ -79,23 +92,23 @@ export default function Page() {
 
         {mode === 'focus' && (
           <div className="layout-wrapper">
-            {/* Focus Player: Larger */}
             <div className="focus-main-area">
               <Player streamer={mainStreamer} />
             </div>
             
             <div className="chat-area" style={{ width: '320px' }}>
-              <div className="focus-buttons" style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <div className="focus-selector" style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {streamers.map((s) => (
                   <button 
                     key={s.name} 
                     onClick={() => setMainStreamer(s.name)}
                     className={`futuristic-btn ${s.name === mainStreamer ? 'active' : ''}`}
                   >
-                    {s.name}
+                    FOCO: {s.name.split('_')[1] || s.name}
                   </button>
                 ))}
               </div>
+              <ChatSelector />
               <Chat streamer={chatStreamer} />
             </div>
           </div>
@@ -103,27 +116,14 @@ export default function Page() {
 
         {mode === 'auto' && (
           <div className="layout-wrapper">
-            {/* 3 Players side by side */}
             <div className="auto-players-area">
               {streamers.map((s) => (
                 <Player key={s.name} streamer={s.name} />
               ))}
             </div>
             
-            {/* Chat with selector on top */}
             <div className="chat-area" style={{ width: '320px' }}>
-              <div className="chat-selector" style={{ marginBottom: '10px', display: 'flex', gap: '5px' }}>
-                {streamers.map((s) => (
-                  <button 
-                    key={s.name} 
-                    onClick={() => setChatStreamer(s.name)}
-                    className={`futuristic-btn ${s.name === chatStreamer ? 'active' : ''}`}
-                    style={{ flex: 1, padding: '8px 5px', fontSize: '0.65rem' }}
-                  >
-                    {s.name.split('_')[1] || s.name}
-                  </button>
-                ))}
-              </div>
+              <ChatSelector />
               <Chat streamer={chatStreamer} />
             </div>
           </div>

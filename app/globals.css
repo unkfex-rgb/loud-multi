@@ -179,8 +179,8 @@ main {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 115%;
-  height: 115%;
+  width: 108%; /* Reduzido de 115% para 108% para evitar aspecto esticado */
+  height: 108%; /* Reduzido de 115% para 108% para evitar aspecto esticado */
   transform: translate(-50%, -50%);
   border: none;
   pointer-events: auto;

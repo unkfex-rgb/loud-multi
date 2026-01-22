@@ -84,8 +84,8 @@ main {
   padding: 10px;
 }
 
-/* Grid Layout */
-.grid-layout-wrapper {
+/* Layout Wrappers */
+.layout-wrapper {
   display: flex;
   gap: 10px;
   height: 100%;
@@ -93,18 +93,38 @@ main {
   position: relative;
 }
 
-.main-stream-area {
-  flex: 1;
+/* Grid Mode Proportions */
+.grid-main-area {
+  flex: 0 0 60%; /* 60% Scale */
   height: 100%;
 }
 
-.side-streams-area {
-  width: 300px;
+.grid-side-area {
+  flex: 0 0 15%; /* Remaining space for side players */
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
+/* Focus Mode Proportions */
+.focus-main-area {
+  flex: 1;
+  height: 100%;
+}
+
+/* Auto Mode Proportions */
+.auto-players-area {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  height: 100%;
+}
+
+.auto-players-area .player {
+  flex: 1;
+}
+
+/* Chat Area */
 .chat-area {
   position: relative;
   height: 100%;
@@ -146,7 +166,7 @@ main {
   height: 100%;
 }
 
-/* Futuristic Buttons for Focus/Auto */
+/* Futuristic Buttons */
 .futuristic-btn {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(0, 255, 127, 0.3);
@@ -185,28 +205,12 @@ footer {
 
 /* Mobile Version */
 @media (max-width: 768px) {
-  body {
-    overflow-y: auto;
-  }
-  header {
-    justify-content: center;
-  }
-  .mode-menu {
-    display: none;
-  }
-  main {
-    height: auto;
-    padding: 5px;
-  }
-  .grid-layout-wrapper {
-    flex-direction: column;
-    height: auto;
-  }
-  .main-stream-area, .side-streams-area {
-    width: 100%;
-    height: 250px;
-  }
-  .chat-area {
-    display: none;
-  }
+  body { overflow-y: auto; }
+  header { justify-content: center; }
+  .mode-menu { display: none; }
+  main { height: auto; padding: 5px; }
+  .layout-wrapper { flex-direction: column; height: auto; }
+  .grid-main-area, .grid-side-area, .auto-players-area { width: 100%; height: auto; flex: none; }
+  .player { height: 250px; margin-bottom: 10px; }
+  .chat-area { display: none; }
 }

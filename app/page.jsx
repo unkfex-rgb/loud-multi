@@ -57,16 +57,19 @@ export default function Page() {
       
       <main>
         {mode === 'grid' && (
-          <div className="grid-layout-wrapper">
-            <div className="main-stream-area">
+          <div className="layout-wrapper">
+            {/* Main Player: 60% Scale */}
+            <div className="grid-main-area">
               <Player streamer={mainStreamer} />
             </div>
             
-            <div className="side-streams-area">
+            {/* Side Players: 30% each (stacked) */}
+            <div className="grid-side-area" style={{ flex: '1' }}>
               <Player streamer={streamers[1].name} height="calc(50% - 5px)" />
               <Player streamer={streamers[2].name} height="calc(50% - 5px)" />
             </div>
             
+            {/* Chat Area */}
             <div className="chat-area" style={{ width: `${chatWidth}px` }}>
               <div className="chat-resizer" onMouseDown={startResizing}></div>
               <Chat streamer={chatStreamer} />
@@ -75,10 +78,12 @@ export default function Page() {
         )}
 
         {mode === 'focus' && (
-          <div className="grid-layout-wrapper">
-            <div className="main-stream-area">
+          <div className="layout-wrapper">
+            {/* Focus Player: Larger */}
+            <div className="focus-main-area">
               <Player streamer={mainStreamer} />
             </div>
+            
             <div className="chat-area" style={{ width: '320px' }}>
               <div className="focus-buttons" style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {streamers.map((s) => (
@@ -97,24 +102,28 @@ export default function Page() {
         )}
 
         {mode === 'auto' && (
-          <div className="grid-layout-wrapper">
-            <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: '10px' }}>
-              <Player streamer={streamers[0].name} />
-              <Player streamer={streamers[1].name} />
-              <Player streamer={streamers[2].name} />
-              <div className="chat-buttons-container" style={{ display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center' }}>
+          <div className="layout-wrapper">
+            {/* 3 Players side by side */}
+            <div className="auto-players-area">
+              {streamers.map((s) => (
+                <Player key={s.name} streamer={s.name} />
+              ))}
+            </div>
+            
+            {/* Chat with selector on top */}
+            <div className="chat-area" style={{ width: '320px' }}>
+              <div className="chat-selector" style={{ marginBottom: '10px', display: 'flex', gap: '5px' }}>
                 {streamers.map((s) => (
                   <button 
                     key={s.name} 
                     onClick={() => setChatStreamer(s.name)}
                     className={`futuristic-btn ${s.name === chatStreamer ? 'active' : ''}`}
+                    style={{ flex: 1, padding: '8px 5px', fontSize: '0.65rem' }}
                   >
-                    CHAT: {s.name}
+                    {s.name.split('_')[1] || s.name}
                   </button>
                 ))}
               </div>
-            </div>
-            <div className="chat-area" style={{ width: '320px' }}>
               <Chat streamer={chatStreamer} />
             </div>
           </div>
